@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projet Symfony - Recettes{% endblock %}
+
+{% block body %}
+    <main id="recette">
+        <div class="menu_recette">
+            <h2>Nos recettes</h2>
+            <nav>
+                <ul id="menu_type">
+                    <li class="smenu"><a href="{{ path('recettes', {type: 'all'}) }}">Toutes les Recettes</a></li>
+                    <li class="smenu"><a href="{{ path('recettes', {type: 1}) }}">Les Entrées</a></li>
+                    <li class="smenu"><a href="{{ path('recettes', {type: 2}) }}">Les Plats</a></li>
+                    <li class="smenu"><a href="{{ path('recettes', {type: 3}) }}">Les Desserts</a></li>
+                </ul>
+            </nav>
+        </div>
+        <section id="les_recettes">
+            <ul class="liste_recette">
+                {% for recettes in lesRecettes %}
+                <li class="liste_type_recette">
+                    <h3>{{ recettes.nom }}</h3>
+                    <img src="{{ asset('images/' ~ recettes.image) }}">
+                    <a href="{{ path('voir_recette', {id: recettes.id}) }}">Voir la recette</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+{% endblock %}
